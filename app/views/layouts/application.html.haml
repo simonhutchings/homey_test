@@ -1,0 +1,20 @@
+!!! 5
+%html
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ http_equiv: 'X-UA-Compatible', content: 'IE=Edge,chrome=1' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' }
+    %title Homey
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = yield :head
+
+    = stylesheet_link_tag "tailwind", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = stylesheet_link_tag 'type', 'data-turbo-track': 'reload'
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+
+  %body
+    %main.container.mx-auto.mt-28.px-5.flex
+      = yield

@@ -262,13 +262,6 @@ module.exports = {
     require('autoprefixer'),
     require("postcss-nested"),
     require("postcss-flexbugs-fixes"),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('tailwind-hamburgers'),
-    require('flowbite/plugin'),
-    // require('@tailwindcss/aspect-ratio'),
-    // eslint-disable-next-line global-require
-    // add custom variant for expanding sidebar
     plugin(({ addVariant, e }) => {
       addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
