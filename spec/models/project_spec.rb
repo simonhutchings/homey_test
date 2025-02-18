@@ -37,4 +37,63 @@ RSpec.describe Project, type: :model do
       expect(project.comments.last.content.to_plain_text).to eq('this is the second comment')
     end
   end
+
+  context "check state machine" do
+    it 'checks default state is for_sale' do
+      expect(project.aasm.current_state).to eq(:for_sale)
+    end
+
+    it 'checks for_sale transitions' do
+      # can transition to
+      expect(project).to transition_from(:for_sale).to(:offer_made).on_event(:make_offer)
+      expect(project).to transition_from(:for_sale).to(:cancelled).on_event(:cancel)
+
+      # can't transtition to
+      expect(project).not_to transition_from(:for_sale).to(:offer_accepted).on_event(:accept_offer)
+      expect(project).not_to transition_from(:for_sale).to(:completed).on_event(:complete)
+    end
+
+    it 'checks offer_made transitions' do
+      project.make_offer
+
+      # checks state
+      expect(project.aasm.current_state).to eq(:offer_made)
+
+      # can transition to
+      expect(project).to transition_from(:offer_made).to(:offer_accepted).on_event(:accept_offer)
+      expect(project).to transition_from(:offer_made).to(:cancelled).on_event(:cancel)
+
+      # # can't transtition to
+      expect(project).not_to transition_from(:offer_made).to(:completed).on_event(:complete)
+    end
+
+    it 'check offer_accepted transitions' do
+      project.make_offer
+      project.accept_offer
+
+      # checks state
+      expect(project.aasm.current_state).to eq(:offer_accepted)
+
+      # can transition to
+      expect(project).to transition_from(:offer_accepted).to(:completed).on_event(:complete)
+      expect(project).to transition_from(:offer_accepted).to(:cancelled).on_event(:cancel)
+
+      # can't transtition to
+      expect(project).not_to transition_from(:offer_accepted).to(:offer_made).on_event(:make_offer)
+    end
+
+    it 'check completed transitions' do
+      project.make_offer
+      project.accept_offer
+      project.complete
+
+      # checks state
+      expect(project.aasm.current_state).to eq(:completed)
+
+      # # can't transtition to
+      expect(project).not_to transition_from(:completed).to(:cancelled).on_event(:cancel)
+      expect(project).not_to transition_from(:completed).to(:offer_made).on_event(:make_offer)
+      expect(project).not_to transition_from(:completed).to(:offer_accepted).on_event(:accept_offer)
+    end
+  end
 end
