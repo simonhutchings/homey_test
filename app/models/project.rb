@@ -10,6 +10,11 @@
 #
 class Project < ApplicationRecord
   include AASM
+  attr_accessor :new_state
+
+  has_many :comments, as: :parent, dependent: :destroy
+  has_many :project_users, dependent: :destroy
+  has_many :users, through: :project_users
 
   # this should be made into an concern/include to reduce the model size
   aasm do
@@ -35,9 +40,12 @@ class Project < ApplicationRecord
     end
   end
 
-  validates :name, presence: true
+  def change_state(new_state)
+    # return unless aasm.events.map(&:name).include?(new_state.to_sym)
 
-  has_many :comments, as: :parent, dependent: :destroy
-  has_many :project_users, dependent: :destroy
-  has_many :users, through: :project_users
+    send(new_state)
+    save
+  end
+
+  validates :name, presence: true
 end

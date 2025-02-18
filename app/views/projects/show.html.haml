@@ -1,0 +1,11 @@
+%h1.text-red-500= @project.name
+%h2.text-red-500= @project.aasm.current_state.to_s.humanize
+
+%br
+
+// need to add in error responses
+
+= simple_form_for @project do |f|
+  = f.input :name
+  = f.input :new_state, as: :select, collection: Project.aasm.events.map(&:name)
+  = f.submit

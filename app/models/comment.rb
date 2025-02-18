@@ -13,5 +13,7 @@ class Comment < ApplicationRecord
   belongs_to :parent, polymorphic: true
   belongs_to :user
 
+  accepts_nested_attributes_for :parent
+
   has_rich_text :content
 end

@@ -7,11 +7,22 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def update
+    @project = Project.find(params[:id])
+    @project.update(project_params)
+    @project.change_state(params[:project][:new_state]) if params[:project][:new_state].present?
+
+    # TO_DO add in error response if cannot save
+
+    redirect_to @project
+  end
+
   private
 
   def project_params
     params.require(:project).permit(
-      :name
+      :name,
+      :new_state
     )
   end
 end

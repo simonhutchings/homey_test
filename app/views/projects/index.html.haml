@@ -18,4 +18,5 @@
       %td.px-2= project.created_at.to_fs(:long)
       %td.px-2= project.updated_at.to_fs(:long)
       %td.px-2= project.aasm.current_state
+      %td.px-2= link_to "VIEW", project_path(project)
 
