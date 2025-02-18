@@ -12,4 +12,5 @@ Starting at 9:00 18th Feb 2025
 7. The Comment will represent when the state is changed. States will only be able to transition from certain other states, eg. you will not be able to transition from completed to for_sale
 
 
-* Users
+* Setup
+run `rails db:seed` to make basic db
