@@ -2,7 +2,7 @@
 
 Starting at 9:00 18th Feb 2025
 
-* Basic setup of the project
+##Basic setup of the project
 1. As this is a company which based on the sale of homes lets set out the basic process of selling a home (the Project model)
 2. We will need a User model, [:first_name, :last_name, :email, :role] (eventually with association to itself, so the buyer has a solicitor etc.)
 3. Role will be a model with roles [sales_agent, buyer, seller, solicitor]
@@ -12,5 +12,13 @@ Starting at 9:00 18th Feb 2025
 7. The Comment will represent when the state is changed. States will only be able to transition from certain other states, eg. you will not be able to transition from completed to for_sale
 
 
-* Setup
+##Setup
+
+###dev containers
+It's a dev containers project in rails 7. If you open in vscode and have docker desktop installed it should generate the dev environment, create the db's and seed some basic data
+
+###manual
 run `rails db:seed` to make basic db
+
+##Tests
+All tests are in RSPEC, and can be run by `rspec`
