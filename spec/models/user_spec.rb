@@ -18,5 +18,10 @@ RSpec.describe User, type: :model do
       user.email = nil
       expect(user.validate).to eq(false)
     end
+
+    it 'ensures a user record has a role' do
+      user.role_id = nil
+      expect(user.validate).to eq(false)
+    end
   end
 end
