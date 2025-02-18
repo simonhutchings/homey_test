@@ -1,0 +1,21 @@
+%h1.text-red-500 Projects
+
+%br
+
+= simple_form_for Project.new do |f|
+  = f.input :name
+  = f.submit
+
+%table.table{ width: '100%'}
+  %tr
+    %th Name
+    %th Created at
+    %th Updated at
+    %th State
+  - @projects.each do |project|
+    %tr
+      %td.px-2= project.name
+      %td.px-2= project.created_at.to_fs(:long)
+      %td.px-2= project.updated_at.to_fs(:long)
+      %td.px-2= project.aasm.current_state
+

@@ -1,0 +1,208 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+ruby '3.3.6'
+
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem 'rails', '~> 7.2.1'
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'sprockets-rails'
+
+# Use mysql or pgsql as the database for Active Record
+# gem 'mysql2', '~> 0.5'
+gem 'pg', '~> 1.1'
+
+# Use the Puma web server [https://github.com/puma/puma]
+gem 'puma', '>= 6.4'
+
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem 'jsbundling-rails'
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem 'turbo-rails'
+
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem 'stimulus-rails'
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
+
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem 'jbuilder'
+
+# solid cache
+# gem 'solid_cache'
+
+# Use Redis adapter to run Action Cable in production
+gem 'redis', '>= 4.0.1'
+
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
+
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem 'bcrypt', '~> 3.1.7'
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# gem 'tzinfo-data', platforms: %i[jruby]
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', require: false
+
+# project specific gems
+# Controller and rack stuff
+# gem 'oj'
+gem 'rabl'
+gem 'rack-rewrite'
+
+# Active record and pagination
+gem 'acts_as_list'
+# gem 'bootstrap-kaminari-views'
+gem 'friendly_id', '~> 5.3.0'
+# gem 'kaminari'
+gem 'pagy'
+gem 'paper_trail'
+
+# Active storage and graphical stuff
+# gem 'active_storage_svg_sanitizer'
+gem 'image_processing', '~> 1.2'
+gem 'ruby-vips'
+gem 'blurhash'
+gem 'ckeditor'
+gem 'google-cloud-storage', '~> 1.8', require: false
+gem 'prawn'
+gem 'prawn-table'
+
+# Code language extensions and decorators
+gem 'bootstrap-sass-extras'
+gem 'draper'
+gem 'haml'
+
+# Use Capistrano for deployment
+# gem 'capistrano', '~> 3.11'
+# gem 'capistrano-bundler'
+# gem 'capistrano-faster-assets'
+# gem 'capistrano-passenger', '~> 0.2.0'
+# gem 'capistrano-rails', '~> 1.4'
+# gem 'capistrano-rvm'
+
+# Authentication
+gem 'acts_as_tenant', '~> 0.5.0' # account tennancy
+gem 'devise'
+gem 'doorkeeper', '~> 5.3', '>= 5.3.1'
+gem 'pundit'
+
+gem 'omniauth'
+gem 'omniauth-stripe-connect'
+
+# Searching
+gem 'ransack'
+# gem '# searchkick'
+
+# searching meilisearch
+gem 'meilisearch-rails'
+
+# contact
+gem 'phony'
+gem 'phony_rails'
+gem 'snail'
+
+# geo
+gem 'countries', require: 'countries/global'
+gem 'country_select'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'money'
+
+# data extraction
+gem 'groupdate'
+gem 'has-activity'
+
+# forms
+gem 'simple_form'
+gem 'simple_form-tailwind'
+
+# graphql
+gem 'graphiql-rails', '~> 1.4', '>= 1.4.8', group: :development
+gem 'graphql', '~> 1.10', '>= 1.10.3'
+gem 'rack-cors'
+
+# translations
+gem 'globalize' # , github: 'jules-w2/globalize', branch: 'main'
+gem 'route_translator'
+
+# email
+gem 'new_google_recaptcha'
+gem 'postmark'
+gem 'premailer-rails'
+
+# background jobs
+gem 'mission_control-jobs'
+gem 'solid_queue'
+
+# ecryption - remove when native rails 7 encryption installed
+gem 'attr_encrypted'
+gem 'lockbox'
+
+# notifications - replace with native rails 7 notifications
+gem 'pusher'
+
+# state machines
+gem 'aasm'
+
+# fontawesome
+source 'https://token:58DF236C-9926-4EAC-B209-64F6EC78BDAC@dl.fontawesome.com/basic/fontawesome-pro/ruby/' do
+  gem 'font-awesome-pro-sass', '6.5.1'
+end
+
+# export gems
+gem 'caxlsx_rails'
+
+# Model annotation
+gem 'annotate'
+
+# error tracking
+gem 'honeybadger', '~> 5.15'
+
+group :development, :test do
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # gem 'debug', platforms: %i[mri windows]
+  gem 'debug', '>= 1.0.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 5.0'
+
+  gem 'puma-metrics'
+  gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot'
+  gem 'rubocop-graphql'
+  gem 'rubocop-haml'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
+
+  gem 'dotenv'
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem 'brakeman', require: false
+
+  gem 'rubocop-rails-omakase', require: false
+end
+
+group :development do
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'awesome_print'
+  gem 'binding_of_caller'
+  gem 'hotwire-livereload'
+  gem 'kamal'
+  gem 'web-console'
+end
+
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'selenium-webdriver'
+end

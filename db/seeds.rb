@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+%i[sales_agent, buyer, seller, solicitor].each do |name|
+  role = Role.create(name: name)
+
+  10.times do
+    User.create!(email: Faker::Internet.email, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, role:)
+  end
+end

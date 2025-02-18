@@ -1,7 +1,17 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  aasm_state :string
+#
 class Project < ApplicationRecord
   include AASM
 
-  # this should be make into an concern/include to reduce the model size
+  # this should be made into an concern/include to reduce the model size
   aasm do
     state :for_sale, initial: true
     state :offer_made, :offer_accepted, :completed, :cancelled
