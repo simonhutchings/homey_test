@@ -1,0 +1,6 @@
+%tr
+  %td= raw comment.content
+  %td= comment.user.name
+  %td= comment.created_at.to_fs(:long)
+  %td= comment.previous_state.to_s.humanize
+  %td= comment.current_state.to_s.humanize

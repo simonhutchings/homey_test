@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   root "projects#index"
 
   resources :comments
-  resources :projects
+
+  resources :projects do
+    resources :comments
+  end
+
   resources :roles
   resources :users
 end

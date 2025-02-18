@@ -2,12 +2,14 @@
 #
 # Table name: comments
 #
-#  id          :bigint           not null, primary key
-#  parent_id   :integer
-#  parent_type :string
-#  user_id     :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :bigint           not null, primary key
+#  current_state  :string
+#  parent_type    :string
+#  previous_state :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  parent_id      :integer
+#  user_id        :integer
 #
 FactoryBot.define do
   factory :comment do

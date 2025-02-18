@@ -5,7 +5,36 @@
 
 // need to add in error responses
 
+%h3 Edit Project
 = simple_form_for @project do |f|
   = f.input :name
   = f.input :new_state, as: :select, collection: Project.aasm.events.map(&:name)
   = f.submit
+
+%br
+%br
+
+%h3 Add comment
+= simple_form_for [@project, Comment.new] do |f|
+  = f.input :content
+  = f.association :user
+
+  // TO_DO this should enventually only be states the project can change to
+  = f.input :new_state, as: :select, collection: Project.aasm.events.map(&:name)
+
+  -# = f.simple_fields_for :project do |p|
+  -#   = p.input :new_state, as: :select, collection: Project.aasm.events.map(&:name)
+
+  = f.submit
+
+%br
+%br
+
+%table.table{ width: '100%'}
+  %tr
+    %th Comment
+    %th Commenter
+    %th Date
+    %th Previous state
+    %th Changed State
+  = render @project.comments
